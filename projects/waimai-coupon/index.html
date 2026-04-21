@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>外卖平台发券策略优化与效果评估 | 刘兆文</title>
+    <title>刘兆文｜数据分析 / 商业分析 / AI 应用</title>
     <meta
       name="description"
-      content="基于用户画像、动态场景识别与短期转化预测，构建外卖平台动态发券策略矩阵，并延伸至发券效果评估。"
+      content="刘兆文的个人作品集，聚焦数据分析、商业分析与 AI 应用，展示外卖平台补贴投放策略优化等项目。"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,229 +14,112 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+SC:wght@400;500;600;700&family=Sora:wght@500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../../style.css" />
+    <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
     <header class="topbar">
       <div class="topbar-inner">
-        <a class="brand" href="../../index.html" aria-label="返回首页">
+        <a class="brand" href="./index.html" aria-label="返回首页">
           <span class="brand-mark">LZ</span>
-          <span>刘兆文 | 作品集</span>
+          <span>刘兆文｜作品集</span>
         </a>
-        <nav class="nav-links" aria-label="项目导航">
-          <a class="nav-link" href="#overview">项目概览</a>
-          <a class="nav-link" href="#framework">分析框架</a>
-          <a class="nav-link" href="#findings">核心发现</a>
-          <a class="nav-link" href="#strategy">策略输出</a>
+        <nav class="nav-links" aria-label="主导航">
+          <a class="nav-link" href="#about">关于我</a>
+          <a class="nav-link" href="#projects">项目</a>
         </nav>
       </div>
     </header>
 
     <main class="page-shell">
-      <div class="back-link">
-        <a href="../../index.html">← 返回作品集首页</a>
-      </div>
-
-      <section class="page-hero" id="overview">
-        <span class="eyebrow">增长策略项目</span>
-        <h1 class="page-title">外卖平台发券策略优化与效果评估</h1>
-        <p class="page-intro">
-          面向外卖平台补贴投放场景，本项目围绕“发给谁、发什么、什么时候发、是否值得发”四个核心问题，
-          构建“长期用户画像 + 短期场景状态 + 短期转化概率”的分析框架，目标是减少无效补贴、提升转化效率，
-          并把策略判断沉淀为可执行的动态发券规则。
-        </p>
-
-        <div class="highlight-bar">
-          <section class="metric-card">
-            <span class="metric-label">用户层</span>
-            <span class="metric-value">4 类画像</span>
-            <p class="metric-note">从价值度、价格敏感度、探索尝鲜度出发识别长期消费底色。</p>
-          </section>
-          <section class="metric-card">
-            <span class="metric-label">场景层</span>
-            <span class="metric-value">3 类模式</span>
-            <p class="metric-note">识别高推进型、前链路停滞型与反复比较型决策场景。</p>
-          </section>
-          <section class="metric-card">
-            <span class="metric-label">预测层</span>
-            <span class="metric-value">AUC 0.86</span>
-            <p class="metric-note">对未来 3 步内转化概率进行建模，用于辅助策略触发判断。</p>
-          </section>
-        </div>
-      </section>
-
-      <section class="section" id="framework">
-        <div class="section-heading">
-          <div>
-            <p class="section-kicker">项目逻辑</p>
-            <h2 class="section-title">分析框架</h2>
-          </div>
-          <p class="section-copy">
-            先识别用户长期差异，再判断用户此刻处于什么场景和决策状态，最后把是否干预落到概率与策略规则上。
-          </p>
-        </div>
-
-        <div class="detail-grid">
-          <div class="section-stack">
-            <article class="section-card">
-              <h3>1. 用户画像：解决“发给谁”</h3>
-              <ul>
-                <li>基于历史交易数据提取用户价值度、价格敏感度、探索尝鲜度三大维度。</li>
-                <li>采用 K-Means 对用户进行聚类，形成 4 类长期消费画像。</li>
-                <li>画像用于判断发券强度上限、券型边界与频次约束。</li>
-              </ul>
-            </article>
-
-            <article class="section-card">
-              <h3>2. 场景状态：解决“什么时候发”</h3>
-              <ul>
-                <li>基于时间、餐段、品类与行为序列构建短期消费场景。</li>
-                <li>使用一阶 Markov 状态转移矩阵识别行为推进节奏与关键停滞节点。</li>
-                <li>重点观察用户是否停留在“比较筛选”阶段，以及不同场景下的推进差异。</li>
-              </ul>
-            </article>
-
-            <article class="section-card">
-              <h3>3. 转化预测：解决“要不要发”</h3>
-              <ul>
-                <li>在 Markov 规律的基础上，引入逻辑回归模型预测未来 3 步推进与转化概率。</li>
-                <li>输入包括当前状态、场景类型、用户画像与短期行为历史。</li>
-                <li>最终把策略判断落到“高犹豫但仍具备推进潜力”的关键节点上。</li>
-              </ul>
-            </article>
-          </div>
-
-          <aside class="section-card">
-            <h3>项目方法栈</h3>
-            <div class="data-points">
-              <div class="data-point">
-                <strong>数据处理</strong>
-                SQL 多表关联、宽表构建、指标口径统一、Python 特征工程。
-              </div>
-              <div class="data-point">
-                <strong>分层与识别</strong>
-                K-Means 用户聚类、场景标签构建、行为状态抽象。
-              </div>
-              <div class="data-point">
-                <strong>行为与预测</strong>
-                Markov 转移矩阵、逻辑回归短期推进与转化预测。
-              </div>
-              <div class="data-point">
-                <strong>策略输出</strong>
-                用户画像 × 场景状态 × 转化概率 × 券型方向 的动态发券矩阵。
-              </div>
+      <section class="hero" id="about">
+        <div class="hero-grid">
+          <article class="hero-panel">
+            <span class="eyebrow">金融科技 × 数据分析 × AI 应用</span>
+            <h1>刘兆文</h1>
+            <p class="headline-subtitle">
+              数据分析 / 商业分析 / AI 应用方向。金融科技背景，关注用户增长、策略分析与 AI 在业务场景中的落地。
+              希望在数据分析、策略运营、增长分析等岗位中，承担从业务问题拆解、数据方法设计到策略输出的完整工作。
+            </p>
+            <div class="pill-row" aria-label="能力标签">
+              <span class="pill">用户增长策略</span>
+              <span class="pill">商业问题拆解</span>
+              <span class="pill">实验设计与因果思维</span>
+              <span class="pill">AI 场景化落地</span>
             </div>
+            <div class="action-row">
+              <a class="button" href="./projects/waimai-coupon/index.html">查看项目详情</a>
+              <a class="button-secondary" href="#projects">浏览项目卡片</a>
+            </div>
+          </article>
+
+          <aside class="hero-stats" aria-label="概览信息">
+            <section class="metric-card">
+              <span class="metric-label">当前关注</span>
+              <span class="metric-value">用户策略优化</span>
+              <p class="metric-note">从用户画像、场景识别到补贴干预，建立更细粒度的增长决策框架。</p>
+            </section>
+            <section class="metric-card">
+              <span class="metric-label">方法工具</span>
+              <span class="metric-value">SQL / Python / ML</span>
+              <p class="metric-note">围绕特征工程、聚类、行为链路建模与转化预测，服务真实业务问题。</p>
+            </section>
+            <section class="metric-card">
+              <span class="metric-label">岗位取向</span>
+              <span class="metric-value">数据分析 / 策略运营</span>
+              <p class="metric-note">偏好从业务问题出发，用分析结果支撑策略制定、投放优化与效果评估。</p>
+            </section>
           </aside>
         </div>
       </section>
 
-      <section class="section" id="findings">
+      <section class="section" id="projects">
         <div class="section-heading">
           <div>
-            <p class="section-kicker">关键结论</p>
-            <h2 class="section-title">核心发现</h2>
+            <p class="section-kicker">项目展示</p>
+            <h2 class="section-title">代表项目</h2>
           </div>
           <p class="section-copy">
-            与其说平台需要识别“谁在浏览”，不如说需要识别“谁虽然还在比较，但已经具备短期推进潜力”。
+            用“问题—方法—结果—策略”的方式组织案例，而不是只堆图表或代码片段。
           </p>
         </div>
 
-        <div class="insight-grid">
-          <article class="section-card">
-            <h3>比较筛选是关键停滞节点</h3>
-            <p>
-              从状态转移结果看，用户从需求表达进入比较筛选较顺畅，但比较阶段的停留概率显著偏高，
-              说明平台真正的经营难点并不在“用户是否进入链路”，而在“用户能否从犹豫走向收口”。
+        <div class="project-grid">
+          <article class="project-card glass-card">
+            <span class="card-tag">增长策略项目</span>
+            <h3 class="card-title">外卖平台发券策略优化与效果评估</h3>
+            <p class="card-copy">
+              基于用户画像、动态场景识别与短期转化预测，构建“发给谁、发什么、什么时候发”的动态发券策略矩阵，目标是提升补贴效率与用户响应质量。
             </p>
-          </article>
-
-          <article class="section-card">
-            <h3>不同场景的经营含义完全不同</h3>
-            <p>
-              同样处于比较阶段的用户，在高推进场景里可能只是成交前的短暂停留；
-              在反复比较场景里则更可能意味着持续犹豫。仅依赖静态标签无法解释这种异质性。
-            </p>
-          </article>
-
-          <article class="section-card">
-            <h3>画像会放大或约束场景差异</h3>
-            <p>
-              高价值、低尝鲜用户在功能性场景中更容易快速成交；低价值、高尝鲜用户在探索性场景中更容易停留前链路。
-              场景不是孤立存在的，它和用户长期底色共同决定策略效果。
-            </p>
-          </article>
-
-          <article class="section-card">
-            <h3>补贴要从平均投放转向增量导向</h3>
-            <p>
-              若用户在高推进场景里本就有较高转化概率，发券可能只是补贴自然成交；
-              真正值得投放的是推进概率中高但仍未收口的人群与节点。
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section" id="strategy">
-        <div class="section-heading">
-          <div>
-            <p class="section-kicker">策略沉淀</p>
-            <h2 class="section-title">策略输出</h2>
-          </div>
-          <p class="section-copy">
-            最终把分析结果沉淀为“谁发、发什么、何时发、是否值得发”的动态发券规则，而不是停留在用户分群本身。
-          </p>
-        </div>
-
-        <div class="detail-grid">
-          <div class="section-stack">
-            <article class="section-card">
-              <h3>动态发券矩阵</h3>
-              <ul>
-                <li><strong>核心优质型 / 高价值低尝鲜型：</strong>以轻补贴、权益型和体验型激励为主，避免深补。</li>
-                <li><strong>低价值高尝鲜型：</strong>重点看场景与状态，适合在可收口场景中投放低门槛、强时效券。</li>
-                <li><strong>低价值低尝鲜型：</strong>更适合条件触发、低频小额投放，避免在弱需求场景下浪费预算。</li>
-              </ul>
-            </article>
-
-            <article class="section-card">
-              <h3>统一时机原则</h3>
-              <div class="callout">
-                高推进场景少发或不发；S2 停留且推进概率中高时，优先投放收口型券；S3 未成交时，以“临门一脚”型轻补贴为主。
-              </div>
-            </article>
-
-            <article class="section-card">
-              <h3>项目价值</h3>
-              <p>
-                这个项目的价值不只是做出一个转化模型，而是把用户长期差异、短期场景状态与策略触发条件连接起来，
-                形成一个能够支持经营决策的闭环：从静态分层走向动态干预，从平均发券走向增量导向。
-              </p>
-            </article>
-          </div>
-
-          <aside class="section-card">
-            <h3>可交付成果</h3>
-            <div class="data-points">
-              <div class="data-point">
-                <strong>策略报告</strong>
-                已完成完整业务分析报告，可直接查看详细内容。
-              </div>
-              <div class="data-point">
-                <strong>报告链接</strong>
-                <a class="button-secondary" href="./report.pdf" target="_blank" rel="noopener noreferrer">打开 PDF 报告</a>
-              </div>
-              <div class="data-point">
-                <strong>后续延展</strong>
-                下一步将继续做发券后验证，识别自然成交、补贴驱动与低响应人群，补齐效果评估闭环。
-              </div>
+            <div class="card-points" aria-label="项目亮点">
+              <span class="card-point">用户行为序列分析</span>
+              <span class="card-point">动态场景解码</span>
+              <span class="card-point">Markov + Logistic</span>
+              <span class="card-point">策略矩阵设计</span>
             </div>
-          </aside>
+            <div class="action-row">
+              <a class="button" href="./projects/waimai-coupon/index.html">查看项目详情</a>
+              <a class="button-secondary" href="./projects/waimai-coupon/index.html#code">查看关键代码</a>
+            </div>
+          </article>
+
+          <article class="placeholder-card">
+            <span class="placeholder-state">准备中</span>
+            <h3 class="card-title">发券后增量效果评估</h3>
+            <p class="card-copy">
+              继续围绕发券链路，识别“促活跃、促成交、自然成交与补贴依赖”的差异，进一步把补贴决策从策略设计延伸到效果验证。
+            </p>
+            <div class="card-points" aria-label="项目状态">
+              <span class="card-point">活跃提升</span>
+              <span class="card-point">成交转化</span>
+              <span class="card-point">增量识别</span>
+            </div>
+          </article>
         </div>
       </section>
     </main>
 
     <footer class="page-shell footer">
-      <p>基于 GitHub Pages 搭建，围绕业务问题、分析方法与策略输出组织项目内容。</p>
+      <p>基于 GitHub Pages 搭建，聚焦清晰表达、严谨分析与可落地的业务输出。</p>
     </footer>
   </body>
 </html>
