@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>刘兆文 | 数据分析 / 商业分析 / AI 应用</title>
+    <meta
+      name="description"
+      content="刘兆文的个人作品集，聚焦数据分析、商业分析与 AI 应用，展示外卖平台发券策略优化等项目。"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+SC:wght@400;500;600;700&family=Sora:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="./index.html" aria-label="返回首页">
+          <span class="brand-mark">LZ</span>
+          <span>刘兆文 | Portfolio</span>
+        </a>
+        <nav class="nav-links" aria-label="主导航">
+          <a class="nav-link" href="#about">About</a>
+          <a class="nav-link" href="#projects">Projects</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="page-shell">
+      <section class="hero" id="about">
+        <div class="hero-grid">
+          <article class="hero-panel">
+            <span class="eyebrow">Fintech x Analytics x AI</span>
+            <h1>刘兆文</h1>
+            <p class="headline-subtitle">
+              数据分析 / 商业分析 / AI 应用。金融科技背景，关注用户增长、策略分析，以及 AI 在业务场景中的落地。
+              作品集希望展示的不只是分析过程，更是从业务问题拆解、数据方法设计到策略输出的完整闭环。
+            </p>
+            <div class="pill-row" aria-label="能力标签">
+              <span class="pill">用户增长策略</span>
+              <span class="pill">商业问题拆解</span>
+              <span class="pill">实验设计与因果思维</span>
+              <span class="pill">AI 场景化落地</span>
+            </div>
+            <div class="action-row">
+              <a class="button" href="./projects/waimai-coupon/index.html">查看项目详情</a>
+              <a class="button-secondary" href="#projects">浏览项目卡片</a>
+            </div>
+          </article>
+
+          <aside class="hero-stats" aria-label="概览信息">
+            <section class="metric-card">
+              <span class="metric-label">Current Focus</span>
+              <span class="metric-value">用户策略优化</span>
+              <p class="metric-note">从用户画像、场景识别到补贴干预，建立更细粒度的增长决策框架。</p>
+            </section>
+            <section class="metric-card">
+              <span class="metric-label">Method Stack</span>
+              <span class="metric-value">SQL / Python / ML</span>
+              <p class="metric-note">围绕特征工程、聚类、行为链路建模与转化预测，服务真实业务问题。</p>
+            </section>
+            <section class="metric-card">
+              <span class="metric-label">Portfolio Mode</span>
+              <span class="metric-value">总 - 分结构</span>
+              <p class="metric-note">首页展示整体能力，项目页展开业务逻辑、方法设计与策略产出。</p>
+            </section>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section" id="projects">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">Project Gallery</p>
+            <h2 class="section-title">精选项目</h2>
+          </div>
+          <p class="section-copy">
+            用“问题—方法—结果—策略”的方式组织案例，而不是只堆图表或代码片段。
+          </p>
+        </div>
+
+        <div class="project-grid">
+          <article class="project-card glass-card">
+            <span class="card-tag">Growth Strategy Case</span>
+            <h3 class="card-title">外卖平台发券策略优化</h3>
+            <p class="card-copy">
+              基于用户画像、动态场景识别与短期转化预测，构建“发给谁、发什么、什么时候发”的动态发券策略矩阵，目标是提升补贴效率与用户响应质量。
+            </p>
+            <div class="card-points" aria-label="项目亮点">
+              <span class="card-point">用户行为序列分析</span>
+              <span class="card-point">动态场景解码</span>
+              <span class="card-point">Markov + Logistic</span>
+              <span class="card-point">策略矩阵设计</span>
+            </div>
+            <div class="action-row">
+              <a class="button" href="./projects/waimai-coupon/index.html">查看项目详情</a>
+            </div>
+          </article>
+
+          <article class="placeholder-card">
+            <span class="placeholder-state">Coming Soon</span>
+            <h3 class="card-title">发券后增量效果评估</h3>
+            <p class="card-copy">
+              继续围绕发券链路，识别“促活跃、促成交、自然成交与补贴依赖”的差异，进一步把补贴决策从策略设计延伸到效果验证。
+            </p>
+            <div class="card-points" aria-label="项目状态">
+              <span class="card-point">Activation</span>
+              <span class="card-point">Conversion</span>
+              <span class="card-point">Incrementality</span>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="page-shell footer">
+      <p>Built for GitHub Pages. Focused on clean storytelling, rigorous analysis, and execution clarity.</p>
+    </footer>
+  </body>
+</html>
