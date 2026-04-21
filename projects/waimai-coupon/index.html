@@ -207,39 +207,40 @@
             </article>
 
             <article class="section-card" id="code">
-              <h3>关键代码</h3>
-              <div class="data-points">
-                <div class="data-point">
-                  <strong>场景特征构建</strong>
-                  从行为序列拆时间、拆动作、做漏斗与份额特征，是后续状态建模和场景识别的输入表。
-                  <div class="action-row" style="margin-top: 12px;">
-                    <a class="button-secondary" href="../../code/1_build_scene_features.py" target="_blank" rel="noopener noreferrer">打开代码</a>
-                  </div>
-                </div>
-                <div class="data-point">
-                  <strong>Markov 状态转移</strong>
-                  把动作映射为状态，生成事件状态表、未来 3 步推进和转化标签，用于链路分析与建模基线。
-                  <div class="action-row" style="margin-top: 12px;">
-                    <a class="button-secondary" href="../../code/build_state_transition_markov.py" target="_blank" rel="noopener noreferrer">打开代码</a>
-                  </div>
-                </div>
-                <div class="data-point">
-                  <strong>Logistic 转化预测</strong>
-                  基于状态、场景、风格和短期历史特征，预测未来 3 步推进与转化概率。
-                  <div class="action-row" style="margin-top: 12px;">
-                    <a class="button-secondary" href="../../code/build_state_logistic_models.py" target="_blank" rel="noopener noreferrer">打开代码</a>
-                  </div>
-                </div>
-                <div class="data-point">
-                  <strong>场景 × 风格融合输出</strong>
-                  融合行为场景、订单环境和用户风格，形成策略匹配与动态发券提示。
-                  <div class="action-row" style="margin-top: 12px;">
-                    <a class="button-secondary" href="../../code/build_scene_style_master.py" target="_blank" rel="noopener noreferrer">打开代码</a>
-                  </div>
-                </div>
-              </div>
-            </article>
-          </div>
+            <h3>关键代码</h3>
+<div class="data-points">
+  <div class="data-point">
+    <strong>场景特征构建</strong>
+    从行为序列拆时间、拆动作、做漏斗与份额特征，是后续状态建模和场景识别的输入表。
+    <div class="action-row" style="margin-top: 12px;">
+      <a class="button-secondary" href="./code/1_build_scene_features.py" target="_blank" rel="noopener noreferrer">打开代码</a>
+    </div>
+  </div>
+
+  <div class="data-point">
+    <strong>Markov 状态转移</strong>
+    把动作映射为状态，生成事件状态表、未来 3 步推进和转化标签，用于链路分析与建模基线。
+    <div class="action-row" style="margin-top: 12px;">
+      <a class="button-secondary" href="./code/build_state_transition_markov.py" target="_blank" rel="noopener noreferrer">打开代码</a>
+    </div>
+  </div>
+
+  <div class="data-point">
+    <strong>Logistic 转化预测</strong>
+    基于状态、场景、风格和短期历史特征，预测未来 3 步推进与转化概率。
+    <div class="action-row" style="margin-top: 12px;">
+      <a class="button-secondary" href="./code/build_state_logistic_models.py" target="_blank" rel="noopener noreferrer">打开代码</a>
+    </div>
+  </div>
+
+  <div class="data-point">
+    <strong>场景 × 风格融合输出</strong>
+    融合行为场景、订单环境和用户风格，形成策略匹配与动态发券提示。
+    <div class="action-row" style="margin-top: 12px;">
+      <a class="button-secondary" href="./code/build_scene_style_master.py" target="_blank" rel="noopener noreferrer">打开代码</a>
+    </div>
+  </div>
+</div>
 
           <aside class="section-card">
             <h3>可交付成果</h3>
