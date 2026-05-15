@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>美团优惠券投放效果分析 PPT | 刘兆文</title>
+  <meta name="description" content="美团优惠券投放效果分析课堂汇报 PPT 入口。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+SC:wght@400;500;600;700&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="../../index.html" aria-label="返回首页"><span class="brand-mark">LZ</span><span>刘兆文 | 作品集</span></a>
+      <nav class="nav-links" aria-label="页面导航">
+        <a class="nav-link" href="./index.html">返回项目页</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <div class="back-link"><a href="./index.html">← 返回项目页</a></div>
+
+    <section class="page-hero">
+      <span class="eyebrow">Class Presentation</span>
+      <h1 class="page-title project-page-title">美团优惠券投放效果分析 PPT</h1>
+      <p class="page-intro">课堂汇报主题：从事件级漏斗到核销预测模型，识别高潜力用户-券组合，实现精细化运营。页面保留 PPT 的核心汇报主线，便于作品集访问者快速理解项目。</p>
+      <div class="highlight-bar highlight-bar-four">
+        <section class="metric-card"><span class="metric-label">实际领券事件</span><span class="metric-value">12.1M</span><p class="metric-note">以事件级口径追踪领券行为。</p></section>
+        <section class="metric-card"><span class="metric-label">7天同券核销</span><span class="metric-value">376K</span><p class="metric-note">同一用户与同一券在窗口内核销。</p></section>
+        <section class="metric-card"><span class="metric-label">核销率</span><span class="metric-value">3.11%</span><p class="metric-note">低频转化场景。</p></section>
+        <section class="metric-card"><span class="metric-label">Top10% Lift</span><span class="metric-value">6.38×</span><p class="metric-note">模型排序具备业务可用性。</p></section>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading"><div><p class="section-kicker">PPT Outline</p><h2 class="section-title">汇报主线</h2></div><p class="section-copy">PPT 分为数据清洗、问题拆解、模型解决、业务落地四部分。</p></div>
+      <div class="insight-grid">
+        <article class="section-card"><h3>01 数据清洗</h3><p>处理缺失值、重复值、日期与金额异常，输出可建模的 cleaned tables，确保事件级分析口径可信。</p></article>
+        <article class="section-card"><h3>02 问题拆解</h3><p>事件级漏斗显示，领券后下单不低，但下单后同券核销极低，问题集中在券匹配效率。</p></article>
+        <article class="section-card"><h3>03 模型解决</h3><p>以领券事件为样本预测 7 天同券核销，用 HistGradientBoosting 识别高潜力投放对象。</p></article>
+        <article class="section-card"><h3>04 业务落地</h3><p>从泛发券转为“人群 × 券类型 × 时机”的精细化投放，减少补贴浪费。</p></article>
+      </div>
+    </section>
+
+    <section class="section">
+      <article class="section-card">
+        <h3>原始 PPT 文件</h3>
+        <p>目前 GitHub 页面已增加 PPT 跳转入口。若需要直接下载原始 .pptx 文件，请将文件上传到本目录并命名为 <strong>美团优惠券投放效果分析_课堂汇报.pptx</strong>，然后项目页按钮可改为直接指向该文件。</p>
+      </article>
+    </section>
+  </main>
+
+  <footer class="page-shell footer"><p>基于 GitHub Pages 搭建，保留课堂汇报的核心逻辑与项目成果。</p></footer>
+</body>
+</html>
