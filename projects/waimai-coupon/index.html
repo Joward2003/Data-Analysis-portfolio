@@ -1,249 +1,85 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>美团优惠券投放效果分析 | 刘兆文</title>
-    <meta
-      name="description"
-      content="从事件级漏斗到核销预测模型：识别高潜力用户-券组合，实现精细化运营。"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+SC:wght@400;500;600;700&family=Sora:wght@500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="../../style.css" />
-  </head>
-  <body>
-    <header class="topbar">
-      <div class="topbar-inner">
-        <a class="brand" href="../../index.html" aria-label="返回首页">
-          <span class="brand-mark">LZ</span>
-          <span>刘兆文 | 作品集</span>
-        </a>
-        <nav class="nav-links" aria-label="项目导航">
-          <a class="nav-link" href="#overview">项目概览</a>
-          <a class="nav-link" href="#data">数据口径</a>
-          <a class="nav-link" href="#funnel">漏斗发现</a>
-          <a class="nav-link" href="#model">模型方案</a>
-          <a class="nav-link" href="#strategy">策略落地</a>
-          <a class="nav-link" href="#resume">简历表达</a>
-        </nav>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>美团优惠券投放效果分析 | 刘兆文</title>
+  <meta name="description" content="从事件级漏斗到核销预测模型：识别高潜力用户-券组合，实现精细化运营。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+SC:wght@400;500;600;700&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="../../index.html" aria-label="返回首页"><span class="brand-mark">LZ</span><span>刘兆文 | 作品集</span></a>
+      <nav class="nav-links" aria-label="项目导航">
+        <a class="nav-link" href="#overview">项目概览</a>
+        <a class="nav-link" href="#data">数据口径</a>
+        <a class="nav-link" href="#funnel">漏斗发现</a>
+        <a class="nav-link" href="#model">模型方案</a>
+        <a class="nav-link" href="#strategy">策略落地</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <div class="back-link"><a href="../../index.html">← 返回作品集首页</a></div>
+
+    <section class="page-hero" id="overview">
+      <span class="eyebrow">Event-Based Funnel + Redemption Prediction</span>
+      <h1 class="page-title project-page-title">美团优惠券投放效果分析</h1>
+      <p class="page-intro">本项目以每一次实际领券事件为样本，追踪“领券 → 下单 → 同券核销”的完整链路，识别当前券为何没有被真正使用，并通过核销预测模型排序高潜力用户-券组合，支持从泛发券转向精细化投放。</p>
+      <div class="action-row presentation-actions" style="margin-top:22px;">
+        <a class="button" href="./slides.html">查看课堂汇报 PPT</a>
+        <a class="button-secondary" href="#data">阅读项目拆解</a>
       </div>
-    </header>
-
-    <main class="page-shell">
-      <div class="back-link">
-        <a href="../../index.html">← 返回作品集首页</a>
+      <div class="highlight-bar highlight-bar-four">
+        <section class="metric-card"><span class="metric-label">实际领券事件</span><span class="metric-value">12.1M</span><p class="metric-note">清洗后进入核心口径的 coupon claim events。</p></section>
+        <section class="metric-card"><span class="metric-label">7天同券核销</span><span class="metric-value">376K</span><p class="metric-note">同一 User_id + Coupon_id 在 7 天窗口内完成核销。</p></section>
+        <section class="metric-card"><span class="metric-label">整体核销率</span><span class="metric-value">3.11%</span><p class="metric-note">低频转化任务，评估更关注 PR-AUC、Top-K 与 Lift。</p></section>
+        <section class="metric-card"><span class="metric-label">Top10% Lift</span><span class="metric-value">6.38×</span><p class="metric-note">模型可用于优先圈选高潜力投放事件。</p></section>
       </div>
+    </section>
 
-      <section class="page-hero" id="overview">
-        <span class="eyebrow">Event-Based Funnel + Redemption Prediction</span>
-        <h1 class="page-title project-page-title">美团优惠券投放效果分析</h1>
-        <p class="page-intro">
-          本项目不再把“领券人数”作为唯一成功指标，而是以每一次实际领券事件为样本，追踪“领券 → 下单 → 同券核销”的完整链路，识别当前券为何没有被真正使用，并通过核销预测模型排序高潜力用户-券组合，支持从泛发券转向精细化投放。
-        </p>
+    <section class="section" id="data">
+      <div class="section-heading"><div><p class="section-kicker">Data Scope & Cleaning</p><h2 class="section-title">数据链路与口径治理</h2></div><p class="section-copy">先区分可解释缺失与会污染当前券核销口径的异常，再构建可追踪的事件级样本。</p></div>
+      <div class="detail-grid">
+        <article class="section-card"><h3>从三张原始表到事件链路</h3><ul><li><strong>领券表：</strong>12,693,100 行，包含用户、券、领取日期、有效期、金额与门槛。</li><li><strong>订单表：</strong>1,048,575 行，包含订单、支付日期、实付金额、减免金额与用券信息。</li><li><strong>访问表：</strong>2,815,177 行，用于刻画用户近期需求强度与行为活跃度。</li><li><strong>清洗动作：</strong>SQL + Python 多表关联、链路校验、缺失值治理、日期/金额异常检查与右截断处理。</li></ul></article>
+        <aside class="section-card"><h3>关键质量校验</h3><div class="data-points"><div class="data-point"><strong>重复值</strong>三张 cleaned tables 重复率均为 0%。</div><div class="data-point"><strong>异常剔除</strong>无券 ID 但存在减免金额的订单不混入当前券核销分析。</div><div class="data-point"><strong>链路可追踪</strong>订单用券记录按 User_id + Coupon_id 回溯领券表，匹配率约 91.96%。</div></div></aside>
+      </div>
+    </section>
 
-        <div class="highlight-bar highlight-bar-four">
-          <section class="metric-card">
-            <span class="metric-label">实际领券事件</span>
-            <span class="metric-value">12.1M</span>
-            <p class="metric-note">清洗后进入核心口径的 coupon claim events。</p>
-          </section>
-          <section class="metric-card">
-            <span class="metric-label">7天同券核销</span>
-            <span class="metric-value">376K</span>
-            <p class="metric-note">标签定义为同一 User_id + Coupon_id 在 7 天窗口内完成核销。</p>
-          </section>
-          <section class="metric-card">
-            <span class="metric-label">整体核销率</span>
-            <span class="metric-value">3.11%</span>
-            <p class="metric-note">低频转化任务，评估更关注 PR-AUC、Top-K 与 Lift。</p>
-          </section>
-          <section class="metric-card">
-            <span class="metric-label">Top10% Lift</span>
-            <span class="metric-value">6.38×</span>
-            <p class="metric-note">模型可用于优先圈选高潜力投放事件。</p>
-          </section>
-        </div>
-      </section>
+    <section class="section" id="funnel">
+      <div class="section-heading"><div><p class="section-kicker">Funnel Diagnosis</p><h2 class="section-title">漏斗拆解与问题定位</h2></div><p class="section-copy">断点不是用户完全不下单，而是下单后没有使用当前券；问题更像“券匹配效率不足”。</p></div>
+      <div class="insight-grid">
+        <article class="section-card insight-card-strong"><h3>领券 → 下单并不低</h3><p class="mega-number">62.8%</p><p>用户领取优惠券后仍有较高比例在窗口期内下单，说明需求并非完全缺失。</p></article>
+        <article class="section-card insight-card-strong"><h3>下单 → 同券核销极低</h3><p class="mega-number">4.9%</p><p>大量订单没有使用本次领取的券，导致补贴触达与实际核销脱节。</p></article>
+        <article class="section-card insight-card-strong"><h3>其他券替代是主因</h3><p class="mega-number">78.6%</p><p>下单但未核销当前券的事件中，大部分被其他券替代。</p></article>
+        <article class="section-card insight-card-strong"><h3>业务问题重述</h3><p>平台需要判断哪张券在什么场景下真正匹配用户需求，而不是继续扩大粗放发券规模。</p></article>
+      </div>
+    </section>
 
-      <section class="section" id="data">
-        <div class="section-heading">
-          <div>
-            <p class="section-kicker">Data Scope & Cleaning</p>
-            <h2 class="section-title">数据链路与口径治理</h2>
-          </div>
-          <p class="section-copy">
-            先把“可解释缺失”和“会污染当前券核销口径的异常”区分开，再构建可追踪的事件级样本。
-          </p>
-        </div>
+    <section class="section" id="model">
+      <div class="section-heading"><div><p class="section-kicker">Modeling</p><h2 class="section-title">事件级核销预测模型</h2></div><p class="section-copy">预测“哪一次领券事件更可能在 7 天内转化为当前券核销”，用于投放排序。</p></div>
+      <div class="detail-grid">
+        <article class="section-card"><h3>标签、特征与训练</h3><ul><li><strong>样本：</strong>User_id + Coupon_id + Receive_date；主标签为 7 天内同券核销。</li><li><strong>样本结构：</strong>建模样本约 1.30M，正样本 40,642，正样本比例 3.13%。</li><li><strong>特征工程：</strong>围绕用户需求、券吸引力、门槛匹配、多券竞争构建 45 个数值特征。</li><li><strong>训练方案：</strong>Logistic Regression 作为基线，HistGradientBoosting 捕捉非线性与交互；通过分层抽样、时间切分和类别不平衡处理控制评估偏差。</li></ul></article>
+        <aside class="section-card"><h3>模型表现</h3><div class="data-points"><div class="data-point"><strong>PR-AUC</strong>0.344</div><div class="data-point"><strong>Top10% Precision</strong>20.95%，Lift 6.38×</div><div class="data-point"><strong>Top1% Lift</strong>17.9×</div><div class="data-point"><strong>解释结果</strong>券有效期、折扣力度、门槛匹配度对核销影响最大。</div></div></aside>
+      </div>
+    </section>
 
-        <div class="detail-grid">
-          <article class="section-card">
-            <h3>从三张原始表到事件链路</h3>
-            <ul>
-              <li><strong>领券表：</strong>12,693,100 行，包含用户、券、领取日期、有效期、金额与门槛。</li>
-              <li><strong>订单表：</strong>1,048,575 行，包含订单、支付日期、实付金额、减免金额与用券信息。</li>
-              <li><strong>访问表：</strong>2,815,177 行，用于刻画用户近期需求强度与行为活跃度。</li>
-              <li><strong>清洗动作：</strong>使用 SQL + Python 完成多表关联、链路校验、缺失值治理、日期/金额异常检查与右截断处理。</li>
-              <li><strong>输出口径：</strong>一条实际领券记录 = User_id + Coupon_id + Receive_date，作为后续漏斗与建模样本。</li>
-            </ul>
-          </article>
+    <section class="section" id="strategy">
+      <div class="section-heading"><div><p class="section-kicker">Business Strategy</p><h2 class="section-title">业务策略与落地价值</h2></div><p class="section-copy">把模型分数转化为可执行的投放优先级和券设计建议。</p></div>
+      <div class="insight-grid">
+        <article class="section-card"><h3>谁该发</h3><p>优先触达近期有需求、历史用券倾向较高且模型预测分数高的事件；对高自然转化但低核销概率事件减少补贴。</p></article>
+        <article class="section-card"><h3>发什么券</h3><p>重点优化券有效期、折扣力度与门槛匹配度，减少被更优券替代。</p></article>
+        <article class="section-card"><h3>什么时候发</h3><p>在用户刚出现需求信号、下单意愿尚未完全自然转化且多券竞争不拥挤时触发。</p></article>
+        <article class="section-card"><h3>一句话总结</h3><p>优惠券运营的关键不是“发出去”，而是让合适的券在合适时间被合适的人真正用掉。</p></article>
+      </div>
+    </section>
+  </main>
 
-          <aside class="section-card">
-            <h3>关键质量校验</h3>
-            <div class="data-points">
-              <div class="data-point"><strong>重复值</strong>三张 cleaned tables 重复率均为 0%。</div>
-              <div class="data-point"><strong>异常剔除</strong>无券 ID 但存在减免金额的订单不混入当前券核销分析。</div>
-              <div class="data-point"><strong>日期校验</strong>少量领取日期异常被剔除；建模时排除晚于 2023-06-23 的领券事件，避免右截断。</div>
-              <div class="data-point"><strong>链路可追踪</strong>订单用券记录按 User_id + Coupon_id 回溯领券表，匹配率约 91.96%。</div>
-            </div>
-          </aside>
-        </div>
-      </section>
-
-      <section class="section" id="funnel">
-        <div class="section-heading">
-          <div>
-            <p class="section-kicker">Funnel Diagnosis</p>
-            <h2 class="section-title">漏斗拆解与问题定位</h2>
-          </div>
-          <p class="section-copy">
-            关键断点不是用户完全不下单，而是下单后没有使用当前券；这意味着问题更像“券匹配效率不足”。
-          </p>
-        </div>
-
-        <div class="insight-grid">
-          <article class="section-card insight-card-strong">
-            <h3>领券 → 下单并不低</h3>
-            <p class="mega-number">62.8%</p>
-            <p>事件级漏斗显示，用户领取优惠券后仍有较高比例在窗口期内发生下单行为，说明需求并非完全缺失。</p>
-          </article>
-
-          <article class="section-card insight-card-strong">
-            <h3>下单 → 同券核销极低</h3>
-            <p class="mega-number">4.9%</p>
-            <p>用户下单并不代表当前券发挥作用；大量订单没有使用本次领取的券，导致补贴触达与实际核销脱节。</p>
-          </article>
-
-          <article class="section-card insight-card-strong">
-            <h3>其他券替代是主因</h3>
-            <p class="mega-number">78.6%</p>
-            <p>下单但未核销当前券的事件中，大部分被其他券替代，说明多券竞争和券吸引力不足是核心机制。</p>
-          </article>
-
-          <article class="section-card insight-card-strong">
-            <h3>业务问题重述</h3>
-            <p>
-              平台不是简单“发券不够”，而是需要判断哪张券在什么场景下真正匹配用户需求，避免用户领了券却被更合适的券替代。</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section" id="model">
-        <div class="section-heading">
-          <div>
-            <p class="section-kicker">Modeling</p>
-            <h2 class="section-title">事件级核销预测模型</h2>
-          </div>
-          <p class="section-copy">
-            建模任务是预测“哪一次领券事件更可能在 7 天内转化为当前券核销”，用于投放排序，而不是单纯做分类准确率。
-          </p>
-        </div>
-
-        <div class="detail-grid">
-          <div class="section-stack">
-            <article class="section-card">
-              <h3>标签与样本</h3>
-              <ul>
-                <li><strong>样本：</strong>User_id + Coupon_id + Receive_date。</li>
-                <li><strong>主标签：</strong>label_same_coupon_redeem_7d，领取后 7 天内出现同一用户与同一券订单则为 1。</li>
-                <li><strong>样本结构：</strong>建模样本约 1.30M，正样本 40,642，正样本比例 3.13%。</li>
-                <li><strong>评估重点：</strong>由于核销是低频事件，重点观察 PR-AUC、Top-K Precision、Lift、Decile 与 Calibration。</li>
-              </ul>
-            </article>
-
-            <article class="section-card">
-              <h3>特征工程：45 个数值特征</h3>
-              <ul>
-                <li><strong>用户需求：</strong>近期访问次数、距离上次访问天数、近期订单数、近 30 天消费金额。</li>
-                <li><strong>券吸引力：</strong>优惠金额、使用门槛、折扣力度、有效期天数。</li>
-                <li><strong>门槛匹配：</strong>使用门槛 / 历史客单价、优惠金额 / 历史客单价。</li>
-                <li><strong>多券竞争：</strong>近 7 / 30 天领券数、未过期券数量、是否存在更优活跃券。</li>
-              </ul>
-            </article>
-          </div>
-
-          <aside class="section-card">
-            <h3>训练方案与结果</h3>
-            <div class="data-points">
-              <div class="data-point"><strong>Baseline</strong>Logistic Regression + 中位数填补 + 标准化 + balanced class_weight。</div>
-              <div class="data-point"><strong>进阶模型</strong>HistGradientBoostingClassifier + balanced sample_weight，捕捉非线性、交互和阈值效应。</div>
-              <div class="data-point"><strong>切分策略</strong>训练集使用历史月份，测试集模拟未来投放；按标签分层抽样，并处理类别不平衡。</div>
-              <div class="data-point"><strong>模型表现</strong>HGB ROC-AUC 0.907，PR-AUC 0.344，Top10% Precision 20.95%，Top10% Lift 6.38×，Top1% Lift 17.9×。</div>
-            </div>
-          </aside>
-        </div>
-      </section>
-
-      <section class="section" id="strategy">
-        <div class="section-heading">
-          <div>
-            <p class="section-kicker">Business Strategy</p>
-            <h2 class="section-title">业务策略与落地价值</h2>
-          </div>
-          <p class="section-copy">
-            模型价值不在于“证明模型分数高”，而在于把分数转化为可执行的投放优先级和券设计建议。
-          </p>
-        </div>
-
-        <div class="insight-grid">
-          <article class="section-card">
-            <h3>谁该发</h3>
-            <p>优先触达近期有访问/下单需求、历史用券倾向较高且模型预测分数高的事件；对高自然转化但低核销概率事件减少补贴。</p>
-          </article>
-          <article class="section-card">
-            <h3>发什么券</h3>
-            <p>结合 SHAP 与特征重要性，重点优化券有效期、折扣力度与门槛匹配度，避免被更优券替代。</p>
-          </article>
-          <article class="section-card">
-            <h3>什么时候发</h3>
-            <p>在用户刚出现需求信号、下单意愿尚未完全自然转化且多券竞争不拥挤时触发，而不是高频泛发。</p>
-          </article>
-          <article class="section-card">
-            <h3>一句话总结</h3>
-            <p>优惠券运营的关键不是“发出去”，而是让合适的券在合适时间被合适的人真正用掉。</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section" id="resume">
-        <div class="section-heading">
-          <div>
-            <p class="section-kicker">Resume Version</p>
-            <h2 class="section-title">可用于简历的项目表达</h2>
-          </div>
-          <p class="section-copy">
-            下方是本项目在简历中的浓缩写法，突出数据规模、问题定位、建模方案与业务结果。
-          </p>
-        </div>
-
-        <article class="section-card resume-block">
-          <ul>
-            <li><strong>数据链路与清洗：</strong>基于 1200万+ 领券记录、100万+ 订单、280万+ 访问日志，使用 SQL + Python 完成多表关联、链路校验、缺失值治理与右截断处理，构建可追踪的“领券→下单→核销”事件级分析口径。</li>
-            <li><strong>漏斗拆解与问题定位：</strong>通过事件级漏斗发现领券→下单转化率 62.8%，但下单→同券核销仅 4.9%，其中 78.6% 未核销下单因其他券替代，定位到核心问题是“券匹配效率不足”而非用户不活跃。</li>
-            <li><strong>特征工程与模型构建：</strong>围绕用户需求、券吸引力、门槛匹配、多券竞争构建 45 个特征；以 Logistic Regression 为基线，使用 HistGradientBoosting 预测 7 天内同券核销，并通过分层抽样、时间切分与类别不平衡处理控制评估偏差。</li>
-            <li><strong>业务策略与效果：</strong>模型 PR-AUC 0.344，Top10% 核销率提升至 20.95%（Lift 6.38×），Top1% Lift 达 17.9×；结合 SHAP 指出“券有效期、折扣力度、门槛匹配度”对核销影响最大，推动从泛发券转向“人群 × 券类型 × 时机”的精细化投放。</li>
-          </ul>
-        </article>
-      </section>
-    </main>
-
-    <footer class="page-shell footer">
-      <p>基于 GitHub Pages 搭建，围绕数据口径、模型验证与业务策略输出组织项目内容。</p>
-    </footer>
-  </body>
+  <footer class="page-shell footer"><p>基于 GitHub Pages 搭建，围绕数据口径、模型验证与业务策略输出组织项目内容。</p></footer>
+</body>
 </html>
